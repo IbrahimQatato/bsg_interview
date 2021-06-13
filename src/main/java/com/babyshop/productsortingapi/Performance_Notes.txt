@@ -1,0 +1,24 @@
+Performance Problems:
+1. Everytime we need to join and look through the whole database
+2. Cannot change the favor_state after adding it
+3. Duplicate rows
+4. Using integer instead of Long
+5. Queries for joining tables can be tedious because of different column names for columns containing the same data.
+
+Improvememnts:
+1.
+ - This can be improved by creating an index on the product_ranking_per_users(user_id, product_id) , and another on products(id). But make the algo worker update intervals longer.
+ - Merge the tables and have a saved joined table which the algo worker would update row by row, it would work faster but require a lot more memory
+ - Make smaller local databases so joining is faster 
+
+2. Need to add a put method to update favor states, and front-end would have to decide which https request to send (put or post).
+
+3. Check for duplicate rows before updating.(but may not be important since front end checks for that in improvement#2.
+
+4. Saves space but may be a problem for a bigger database.
+
+5. Have the same name fields in the database e.g. (product_id user_id instead of each being called id locally).
+
+
+
+
