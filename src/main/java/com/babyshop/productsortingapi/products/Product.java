@@ -1,9 +1,13 @@
 package com.babyshop.productsortingapi.products;
 
+import com.babyshop.productsortingapi.images.Image;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -15,6 +19,8 @@ public class Product {
     private LocalDate deleted_at;
     private String short_description;
     private String description;
+    @OneToMany(mappedBy = "product_id")
+    private List<Image> images;
     public Product() {
     }
 
@@ -42,6 +48,9 @@ public class Product {
         this.description = description;
     }
 
+    public List<Image> getImages() {
+        return images;
+    }
 
     @Override
     public String toString() {

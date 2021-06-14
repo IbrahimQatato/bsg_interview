@@ -10,8 +10,8 @@ import java.util.List;
 public interface ProductRankingRepository extends JpaRepository<ProductRanking, Integer> {
     @Query(
             value = "SELECT * " +
-                    "FROM (SELECT * FROM product_ranking_per_users, products " +
-                    "WHERE products.id = product_id) AS ranked_products " +
+                    "FROM product_ranking_per_users " +
+                    "INNER JOIN products ON products.id = product_id " +
                     "WHERE  user_id = ?1 " +
                     "ORDER BY ranking",
             nativeQuery = true)
